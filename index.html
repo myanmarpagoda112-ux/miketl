@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VITVITHUBB.COM</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"> 
+
+    <script src="https://pl30365127.effectivecpmnetwork.com/a6/25/48/a62548ab65dbd153162c88be71e77616.js"></script>
+
+    <style>
+        :root {
+            /* Futuristic Cyber Dark Palette */
+            --bg-base: #090D16;
+            --bg-surface: #131A29;
+            --bg-dock: rgba(19, 26, 41, 0.85);
+            
+            /* Electric Neon Cyber Tones */
+            --cyber-blue: #00F0FF;
+            --cyber-purple: #7000FF;
+            --brand-gradient: linear-gradient(135deg, var(--cyber-blue), var(--cyber-purple));
+            --neon-glow: rgba(0, 240, 255, 0.25);
+            
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+            --border-fine: rgba(255, 255, 255, 0.08);
+            
+            --shadow-lux: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --shadow-dock: 0 20px 50px -12px rgba(0, 240, 255, 0.15);
+            --font-luxury: 'Plus Jakarta Sans', sans-serif;
+        } 
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-luxury);
+            -webkit-tap-highlight-color: transparent;
+        } 
+
+        body {
+            background-color: #030712;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        } 
+
+        /* 📱 Ultimate Cyber App Shell */
+        .app-shell {
+            width: 100%;
+            max-width: 430px;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 110px;
+            overflow-x: hidden;
+            background-color: var(--bg-base);
+            box-shadow: 0 0 100px rgba(0, 240, 255, 0.05);
+            border-left: 1px solid var(--border-fine);
+            border-right: 1px solid var(--border-fine);
+        } 
+
+        .view-panel { 
+            display: none; 
+            width: 100%;
+            animation: luxFadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .view-panel.active { 
+            display: block;
+        } 
+
+        @keyframes luxFadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== CYBER HEADER & 3D FLIP TITLE ==================== */
+        .header-lux {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 20px 24px 14px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            border-bottom: 1px solid var(--border-fine);
+        }
+
+        .logo-lux {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        /* Dynamic 3D Letter Flip Animation */
+        .animated-flip-title {
+            display: inline-flex;
+            gap: 2px;
+            padding: 6px 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-fine);
+            border-radius: 14px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .animated-flip-title span {
+            display: inline-block;
+            color: #FFFFFF; /* စာလုံးအရောင် အဖြူ */
+            animation: flipLetter 4s infinite ease-in-out;
+            transform-origin: center;
+        }
+
+        /* Black & White Color Accent for dot/extension */
+        .animated-flip-title span.dark-dot {
+            color: var(--cyber-blue);
+        }
+
+        /* Individual Staggered Delay for Letter-by-Letter Motion */
+        .animated-flip-title span:nth-child(1) { animation-delay: 0.1s; }
+        .animated-flip-title span:nth-child(2) { animation-delay: 0.2s; }
+        .animated-flip-title span:nth-child(3) { animation-delay: 0.3s; }
+        .animated-flip-title span:nth-child(4) { animation-delay: 0.4s; }
+        .animated-flip-title span:nth-child(5) { animation-delay: 0.5s; }
+        .animated-flip-title span:nth-child(6) { animation-delay: 0.6s; }
+        .animated-flip-title span:nth-child(7) { animation-delay: 0.7s; }
+        .animated-flip-title span:nth-child(8) { animation-delay: 0.8s; }
+        .animated-flip-title span:nth-child(9) { animation-delay: 0.9s; }
+        .animated-flip-title span:nth-child(10) { animation-delay: 1.0s; }
+        .animated-flip-title span:nth-child(11) { animation-delay: 1.1s; }
+        .animated-flip-title span:nth-child(12) { animation-delay: 1.2s; }
+        .animated-flip-title span:nth-child(13) { animation-delay: 1.3s; }
+        .animated-flip-title span:nth-child(14) { animation-delay: 1.4s; }
+
+        @keyframes flipLetter {
+            0% { transform: rotateY(0deg) scale(1); }
+            20% { transform: rotateY(180deg) scale(1.15); color: #000000; background: #FFFFFF; border-radius: 4px; } /* ရှေ့သို့လှည့်ခြင်း */
+            40% { transform: rotateY(360deg) scale(1); }
+            80% { transform: rotateY(360deg) scale(1); } /* စက္ကန့်အနည်းငယ် တည်ငြိမ်နေမည် */
+            100% { transform: rotateY(0deg) scale(1); } /* နောက်ဆုတ်လှည့်ပြန်ခြင်း */
+        }
+
+        .search-lux-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-lux-box input {
+            width: 100%;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-fine);
+            border-radius: 16px;
+            padding: 14px 16px 14px 46px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            outline: none;
+            box-shadow: var(--shadow-lux);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .search-lux-box input:focus {
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .search-icon-lux {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        /* ==================== NEON CATEGORY PILLS ==================== */
+        .pill-carousel-lux {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 12px 24px 14px 24px;
+        }
+        .pill-carousel-lux::-webkit-scrollbar { display: none; }
+
+        .pill-lux {
+            padding: 10px 22px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-fine);
+            border-radius: 14px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            box-shadow: var(--shadow-lux);
+            transition: all 0.25s ease;
+        }
+
+        .pill-lux.active {
+            background: var(--brand-gradient);
+            color: #FFFFFF;
+            border-color: transparent;
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        /* ==================== FUTURISTIC VIDEO CARDS ==================== */
+        .stream-layout {
+            padding: 12px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .lux-card {
+            background: var(--bg-surface);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid var(--border-fine);
+            box-shadow: var(--shadow-lux);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .lux-card:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+        }
+
+        .lux-card:active {
+            transform: scale(0.97);
+        }
+
+        .lux-media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9.5;
+            background: #000;
+        }
+
+        .lux-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .duration-lux-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--cyber-blue);
+            border: 1px solid var(--border-fine);
+        }
+
+        .fav-lux-trigger {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            background: rgba(9, 13, 22, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            color: var(--text-main);
+            border: 1px solid var(--border-fine);
+            transition: all 0.2s;
+        }
+
+        .fav-lux-trigger.active {
+            color: #EF4444;
+            background: rgba(255, 255, 255, 0.9);
+            transform: scale(1.05);
+        }
+
+        .lux-details {
+            padding: 0 14px 14px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .lux-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.45;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .lux-metrics {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .lux-metrics span.play-indicator {
+            color: var(--cyber-blue);
+            font-weight: 800;
+        }
+
+        /* ==================== CLEAN PLAYER VIEW ==================== */
+        .player-nav-lux {
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-fine);
+        }
+
+        .btn-lux-back {
+            background: var(--bg-base);
+            border: 1px solid var(--border-fine);
+            color: var(--text-main);
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lux);
+        }
+
+        .viewport-lux {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            position: relative;
+            box-shadow: var(--shadow-lux);
+        }
+
+        .viewport-lux iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .shield-lux {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            z-index: 10;
+        }
+
+        .title-lux-viewport {
+            padding: 24px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            line-height: 1.5;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-fine);
+        }
+
+        .label-lux-section {
+            padding: 28px 24px 6px 24px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* ==================== MONETIZATION CARD ==================== */
+        .monetize-lux-card {
+            margin: 14px 24px;
+            padding: 24px;
+            background: var(--bg-surface);
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-lux);
+            border: 1px dashed var(--cyber-blue);
+            position: relative;
+        }
+
+        .monetize-header {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .btn-lux-action {
+            display: inline-block;
+            background: var(--brand-gradient);
+            color: #FFFFFF;
+            padding: 14px 32px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 0 15px var(--neon-glow);
+            margin-top: 16px;
+            transition: transform 0.2s;
+        }
+
+        .btn-lux-action:active {
+            transform: scale(0.96);
+        }
+
+        /* ==================== CYBER DOCK NAV ==================== */
+        .floating-dock {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 48px);
+            max-width: 382px;
+            background: var(--bg-dock);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--border-fine);
+            border-radius: 24px;
+            display: flex;
+            justify-content: space-around;
+            padding: 14px 0;
+            z-index: 999;
+            box-shadow: var(--shadow-dock);
+        }
+
+        .dock-item-lux {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            padding: 4px 12px;
+        }
+
+        .dock-item-lux.active {
+            color: var(--cyber-blue);
+        }
+
+        .dock-item-lux.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            width: 14px;
+            height: 4px;
+            background: var(--cyber-blue);
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--cyber-blue);
+        }
+
+        .dock-icon-lux {
+            font-size: 1.35rem;
+        }
+
+        /* ==================== SYSTEM MODALS ==================== */
+        .glass-gate-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(9, 13, 22, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 24px;
+        }
+
+        .lux-gate-card {
+            background: var(--bg-surface);
+            width: 100%;
+            max-width: 340px;
+            border-radius: 28px;
+            padding: 36px 28px;
+            text-align: center;
+            box-shadow: var(--shadow-dock);
+            border: 1px solid var(--border-fine);
+        }
+
+        .gate-lux-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .gate-lux-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .btn-gate-lux-confirm {
+            background: var(--brand-gradient);
+            color: #FFFFFF;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 0.98rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--neon-glow);
+        }
+
+        .lux-state-msg {
+            text-align: center;
+            padding: 50px 24px;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+        
+        .lux-spinner {
+            width: 28px;
+            height: 28px;
+            border: 3.5px solid var(--border-fine);
+            border-top: 3.5px solid var(--cyber-blue);
+            border-radius: 50%;
+            animation: luxRotation 0.75s linear infinite;
+            margin: 0 auto 14px auto;
+        }
+        @keyframes luxRotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body> 
+
+<!-- 18+ Elegance Gate -->
+<div class="glass-gate-screen" id="gateModal">
+    <div class="lux-gate-card">
+        <div class="gate-lux-title">Age Verification</div>
+        <div class="gate-lux-desc">
+            This digital space presents adult content curated for audience members aged 18 and older. Please confirm to grant access.
+        </div>
+        <button class="btn-gate-lux-confirm" onclick="document.getElementById('gateModal').style.display='none'">AGREE & AGED 18+</button>
+    </div>
+</div> 
+
+<!-- Interstitial Ad Layer -->
+<div class="glass-gate-screen" id="adPortalModal" style="display: none;">
+    <div class="lux-gate-card" style="padding: 0; overflow: hidden; max-width: 360px;">
+        <iframe id="interstitialFrame" src="" style="width: 100%; aspect-ratio: 4/3; border: none;"></iframe>
+        <div style="background: var(--bg-surface); padding: 16px; color: var(--text-main); font-weight: 700; font-size: 0.88rem; border-top: 1px solid var(--border-fine);" id="timerCountdown">
+            Verifying secure link in 10s...
+        </div>
+    </div>
+</div>
+
+<div class="app-shell"> 
+
+    <!-- VIEW: HOME CONTAINER -->
+    <div id="panelHome" class="view-panel active">
+        <div class="header-lux">
+            <div class="logo-lux">
+                <div class="animated-flip-title">
+                    <span>V</span><span>I</span><span>T</span><span>V</span><span>I</span><span>T</span><span>H</span><span>U</span><span>B</span><span>B</span><span class="dark-dot">.</span><span>C</span><span>O</span><span>M</span>
+                </div>
+            </div>
+            
+            <div class="search-lux-box">
+                <span class="search-icon-lux">🔍</span>
+                <input type="text" id="queryInput" placeholder="Search premium digital stream...">
+            </div>
+        </div>
+
+        <div class="pill-carousel-lux">
+            <div class="pill-lux active" onclick="filterQuery('asian', this)">Trending</div>
+            <div class="pill-lux" onclick="filterQuery('myanmar', this)">Myanmar</div>
+            <div class="pill-lux" onclick="filterQuery('korean', this)">Korean</div>
+            <div class="pill-lux" onclick="filterQuery('japanese', this)">Japanese</div>
+        </div>
+
+        <div class="stream-layout" id="homeStream">
+            <!-- Dynamic Injection Area -->
+        </div>
+    </div>
+
+    <!-- VIEW: PLAYER ARCHITECTURE -->
+    <div id="panelPlayer" class="view-panel">
+        <div class="player-nav-lux">
+            <div class="btn-lux-back" onclick="navigateView('home')">❮</div>
+            <div style="font-weight: 800; color: var(--text-main); font-size: 1rem; letter-spacing: -0.2px;">Premium Stream</div>
+        </div>
+
+        <div class="viewport-lux">
+            <div class="shield-lux"></div>
+            <div id="videoEmbedContainer"></div>
+        </div>
+
+        <div class="title-lux-viewport" id="videoActiveTitle">Loading presentation details...</div>
+
+        <!-- Luxury Promo Module -->
+        <div class="monetize-lux-card">
+            <div class="monetize-header">နေရာလွတ်ရှိသေးသည် ကြော်ငြာထည့်နိုင်ပါပြီ</div>
+            <div style="color: var(--text-muted); font-size: 0.88rem; font-weight: 500; line-height: 1.5;">
+                စလော့၊ 2D3D နှင့် လုပ်ငန်းကြော်ငြာများကို အထူးဈေးနှုန်းဖြင့် ထည့်သွင်းပေးနေပါသည်။
+            </div>
+            <a href="https://t.me/MmpHubAds" target="_blank" class="btn-lux-action">ကြော်ငြာရန်ဆက်သွယ်ပါ</a>
+        </div>
+
+        <div class="label-lux-section">Recommendations</div>
+        <div class="stream-layout" id="recommendStream"></div>
+    </div>
+
+    <!-- VIEW: BOOKMARKS PORTAL -->
+    <div id="panelFavs" class="view-panel">
+        <div class="header-lux">
+            <div class="logo-lux">
+                <div class="animated-flip-title">
+                    <span>S</span><span>A</span><span>V</span><span>E</span><span>D</span><span class="dark-dot">.</span><span>I</span><span>T</span><span>E</span><span>M</span><span>S</span>
+                </div>
+            </div>
+        </div>
+        <div class="stream-layout" id="bookmarksStream"></div>
+    </div>
+
+    <!-- FLOATING NAVIGATION DOCK -->
+    <div class="floating-dock">
+        <div class="dock-item-lux active" id="dockHome" onclick="navigateView('home')">
+            <span class="dock-icon-lux">⚡</span>
+            <span>Discover</span>
+        </div>
+        <div class="dock-item-lux" id="dockFav" onclick="triggerFavSecureTransition()">
+            <span class="dock-icon-lux">❤️</span>
+            <span>Favorites</span>
+        </div>
+    </div>
+
+</div> 
+
+<script>
+    let activeQuery = "asian"; 
+    let idxHome = Math.floor(Math.random() * 5) + 1; 
+    let idxRelated = Math.floor(Math.random() * 5) + 6;
+    let lockScrollFetch = false;
+    let currentPanel = "home"; 
+
+    // System Cache Integrations
+    if (!sessionStorage.getItem('processedKeys')) sessionStorage.setItem('processedKeys', JSON.stringify([]));
+    if (!localStorage.getItem('savedCollection')) localStorage.setItem('savedCollection', JSON.stringify([]));
+
+    document.addEventListener("DOMContentLoaded", () => {
+        executeFetchOperation(activeQuery, idxHome, 'homeStream', false);
+
+        document.getElementById('queryInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                activeQuery = this.value.trim() || "asian";
+                idxHome = Math.floor(Math.random() * 5) + 1;
+                executeFetchOperation(activeQuery, idxHome, 'homeStream', false);
+                this.blur();
+            }
+        }); 
+
+        window.addEventListener('scroll', () => {
+            if (currentPanel === "favorites") return;
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 700) {
+                if (!lockScrollFetch) {
+                    lockScrollFetch = true; 
+                    if (currentPanel === "home") {
+                        idxHome++;
+                        executeFetchOperation(activeQuery, idxHome, 'homeStream', true);
+                    } else if (currentPanel === "player") {
+                        idxRelated++;
+                        executeFetchOperation(activeQuery, idxRelated, 'recommendStream', true);
+                    }
+                }
+            }
+        });
+    }); 
+
+    function navigateView(panelId) {
+        currentPanel = panelId;
+        document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.dock-item-lux').forEach(d => d.classList.remove('active'));
+
+        if (panelId === 'home') {
+            document.getElementById('panelHome').classList.add('active');
+            document.getElementById('dockHome').classList.add('active');
+            document.getElementById('videoEmbedContainer').innerHTML = ""; 
+        } else if (panelId === 'favorites') {
+            document.getElementById('panelFavs').classList.add('active');
+            document.getElementById('dockFav').classList.add('active');
+            document.getElementById('videoEmbedContainer').innerHTML = ""; 
+            parseSavedData();
+        } else if (panelId === 'player') {
+            document.getElementById('panelPlayer').classList.add('active');
+        }
+        window.scrollTo(0, 0);
+    }
+
+    function triggerFavSecureTransition() {
+        if (currentPanel === 'favorites') return;
+        
+        const gate = document.getElementById('adPortalModal');
+        const frame = document.getElementById('interstitialFrame');
+        const timer = document.getElementById('timerCountdown');
+        
+        frame.src = "https://www.effectivecpmnetwork.com/y8j5fhj7?key=f358a7cf2521836b21c157f8969ed338";
+        gate.style.display = 'flex';
+        
+        let dynamicSec = 10;
+        timer.innerText = `Verifying secure link in ${dynamicSec}s...`;
+
+        const pulse = setInterval(() => {
+            dynamicSec--;
+            if (dynamicSec <= 0) {
+                clearInterval(pulse);
+                gate.style.display = 'none';
+                frame.src = ""; 
+                navigateView('favorites');
+            } else {
+                timer.innerText = `Verifying secure link in ${dynamicSec}s...`;
+            }
+        }, 1000);
+    }
+
+    function filterQuery(queryKeyword, component) {
+        document.querySelectorAll('.pill-lux').forEach(c => c.classList.remove('active'));
+        component.classList.add('active');
+        activeQuery = queryKeyword;
+        idxHome = Math.floor(Math.random() * 5) + 1;
+        executeFetchOperation(activeQuery, idxHome, 'homeStream', false);
+    }
+
+    function toggleCollectionState(e, packet) {
+        e.stopPropagation(); 
+        let store = JSON.parse(localStorage.getItem('savedCollection'));
+        const targetIdx = store.findIndex(item => item.id === packet.id);
+
+        if (targetIdx > -1) {
+            store.splice(targetIdx, 1);
+            e.currentTarget.classList.remove('active');
+            e.currentTarget.innerHTML = '♡';
+        } else {
+            store.push(packet);
+            e.currentTarget.classList.add('active');
+            e.currentTarget.innerHTML = '❤️';
+        }
+        localStorage.setItem('savedCollection', JSON.stringify(store));
+
+        if (currentPanel === "favorites") parseSavedData();
+    }
+
+    function parseSavedData() {
+        const board = document.getElementById('bookmarksStream');
+        let store = JSON.parse(localStorage.getItem('savedCollection'));
+
+        if (store.length === 0) {
+            board.innerHTML = `<div class="lux-state-msg">No bookmarks discovered.<br>Engage the heart matrix on premium media cards to allocate files here.</div>`;
+            return;
+        }
+
+        board.innerHTML = "";
+        store.forEach(vData => {
+            board.appendChild(scaffoldCardNode(vData, true));
+        });
+    }
+
+    async function executeFetchOperation(searchKey, dynamicPage, TargetNodeId, isAppendation) {
+        const stream = document.getElementById(TargetNodeId);
+        
+        if (!isAppendation) {
+            stream.innerHTML = `<div class="lux-state-msg"><div class="lux-spinner"></div>Synchronizing luxury network matrices...</div>`;
+        }
+
+        try {
+            const apiRequestString = `https://www.eporner.com/api/v2/video/search/?query=${encodeURIComponent(searchKey)}&per_page=15&page=${dynamicPage}&thumbsize=big`;
+            const communicationChannel = await fetch(apiRequestString);
+            const verifiedPayload = await communicationChannel.json(); 
+
+            if (!isAppendation) stream.innerHTML = ""; 
+
+            let processedKeys = JSON.parse(sessionStorage.getItem('processedKeys')); 
+            let store = JSON.parse(localStorage.getItem('savedCollection'));
+            let operationalYieldCount = 0;
+
+            if (verifiedPayload.videos && verifiedPayload.videos.length > 0) {
+                verifiedPayload.videos.forEach(entity => {
+                    if (!processedKeys.includes(entity.id)) {
+                        processedKeys.push(entity.id); 
+                        operationalYieldCount++; 
+
+                        const simulatedVisits = entity.views || Math.floor(Math.random() * 600) + 50;
+                        const shortFormMetric = simulatedVisits >= 1000 ? (simulatedVisits / 1000).toFixed(1) + 'K' : simulatedVisits; 
+                        const timestampDisplay = `${entity.length_min}:${entity.length_sec < 10 ? '0' + entity.length_sec : entity.length_sec}`;
+                        const matchingState = store.some(savedUnit => savedUnit.id === entity.id);
+
+                        const structuralObject = {
+                            id: entity.id,
+                            title: entity.title.replace(/'/g, "\\'").replace(/"/g, '\\"'),
+                            embed: entity.embed,
+                            thumb: entity.default_thumb.src,
+                            duration: timestampDisplay,
+                            views: shortFormMetric
+                        };
+
+                        stream.appendChild(scaffoldCardNode(structuralObject, matchingState));
+                    }
+                }); 
+
+                sessionStorage.setItem('processedKeys', JSON.stringify(processedKeys)); 
+
+                if (operationalYieldCount === 0) {
+                    lockScrollFetch = false;
+                    let incrementedPageValue = dynamicPage + 1;
+                    if (currentPanel === "home") {
+                        idxHome = incrementedPageValue;
+                        executeFetchOperation(activeQuery, idxHome, 'homeStream', true);
+                    } else {
+                        idxRelated = incrementedPageValue;
+                        executeFetchOperation(activeQuery, idxRelated, 'recommendStream', true);
+                    }
+                    return;
+                }
+                lockScrollFetch = false;
+            } else {
+                if (!isAppendation) stream.innerHTML = `<div class="lux-state-msg">No transmission arrays responded.</div>`;
+                lockScrollFetch = false;
+            }
+        } catch (exception) {
+            console.error(exception);
+            if (!isAppendation) stream.innerHTML = `<div class="lux-state-msg">Data stream alignment fault.</div>`;
+            lockScrollFetch = false;
+        }
+    } 
+
+    function scaffoldCardNode(dataset, activeMarker) {
+        const elementWrapper = document.createElement('div');
+        elementWrapper.className = 'lux-card';
+        elementWrapper.onclick = () => activateBroadcastStream(dataset.embed, dataset.title); 
+
+        elementWrapper.innerHTML = `
+            <div class="lux-media">
+                <img src="${dataset.thumb}" alt="Cover Graphic">
+                <div class="duration-lux-badge">${dataset.duration}</div>
+                <div class="fav-lux-trigger ${activeMarker ? 'active' : ''}" onclick="toggleCollectionState(event, ${JSON.stringify(dataset).replace(/"/g, '&quot;')})">
+                    ${activeMarker ? '❤️' : '♡'}
+                </div>
+            </div>
+            <div class="lux-details">
+                <div class="lux-title">${dataset.title}</div>
+                <div class="lux-metrics">
+                    <span><span class="play-indicator">▶</span> ${dataset.views} Views</span>
+                    <span>UltraHD</span>
+                </div>
+            </div>
+        `;
+        return elementWrapper;
+    }
+
+    function activateBroadcastStream(streamLink, metaLabel) {
+        navigateView('player');
+        document.getElementById('videoEmbedContainer').innerHTML = `
+            <iframe src="${streamLink}" allowfullscreen scrolling="no"></iframe>
+        `;
+        document.getElementById('videoActiveTitle').innerText = metaLabel; 
+
+        idxRelated = Math.floor(Math.random() * 5) + 6;
+        executeFetchOperation(activeQuery, idxRelated, 'recommendStream', false);
+    } 
+</script> 
+
+<script src="https://pl30365128.effectivecpmnetwork.com/8f/ca/73/8fca7385f9007d1f3a68c2f30a6b69fc.js"></script>
+
+</body>
+</html>
