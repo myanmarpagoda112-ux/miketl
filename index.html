@@ -116,17 +116,15 @@
 
         .animated-flip-title span {
             display: inline-block;
-            color: #FFFFFF; /* စာလုံးအရောင် အဖြူ */
+            color: #FFFFFF;
             animation: flipLetter 4s infinite ease-in-out;
             transform-origin: center;
         }
 
-        /* Black & White Color Accent for dot/extension */
         .animated-flip-title span.dark-dot {
             color: var(--cyber-blue);
         }
 
-        /* Individual Staggered Delay for Letter-by-Letter Motion */
         .animated-flip-title span:nth-child(1) { animation-delay: 0.1s; }
         .animated-flip-title span:nth-child(2) { animation-delay: 0.2s; }
         .animated-flip-title span:nth-child(3) { animation-delay: 0.3s; }
@@ -144,10 +142,10 @@
 
         @keyframes flipLetter {
             0% { transform: rotateY(0deg) scale(1); }
-            20% { transform: rotateY(180deg) scale(1.15); color: #000000; background: #FFFFFF; border-radius: 4px; } /* ရှေ့သို့လှည့်ခြင်း */
+            20% { transform: rotateY(180deg) scale(1.15); color: #000000; background: #FFFFFF; border-radius: 4px; }
             40% { transform: rotateY(360deg) scale(1); }
-            80% { transform: rotateY(360deg) scale(1); } /* စက္ကန့်အနည်းငယ် တည်ငြိမ်နေမည် */
-            100% { transform: rotateY(0deg) scale(1); } /* နောက်ဆုတ်လှည့်ပြန်ခြင်း */
+            80% { transform: rotateY(360deg) scale(1); }
+            100% { transform: rotateY(0deg) scale(1); }
         }
 
         .search-lux-box {
@@ -295,6 +293,33 @@
             transform: scale(1.05);
         }
 
+        .share-lux-trigger {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            height: 32px;
+            padding: 0 12px;
+            background: rgba(9, 13, 22, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border: 1px solid var(--border-fine);
+            transition: all 0.2s;
+        }
+
+        .share-lux-trigger:active {
+            transform: scale(0.92);
+            background: var(--cyber-blue);
+            color: #000;
+        }
+
         .lux-details {
             padding: 0 14px 14px 14px;
             display: flex;
@@ -316,7 +341,7 @@
         .lux-metrics {
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
             font-size: 0.82rem;
             color: var(--text-muted);
             font-weight: 600;
@@ -376,12 +401,30 @@
         }
 
         .title-lux-viewport {
-            padding: 24px;
-            font-size: 1.1rem;
+            padding: 20px 24px;
+            font-size: 1.05rem;
             font-weight: 800;
             line-height: 1.5;
             color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             border-bottom: 1px solid var(--border-fine);
+        }
+
+        .btn-share-player {
+            align-self: flex-start;
+            background: var(--bg-surface);
+            border: 1px solid var(--cyber-blue);
+            color: var(--cyber-blue);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .label-lux-section {
@@ -481,7 +524,7 @@
             font-size: 1.35rem;
         }
 
-        /* ==================== SYSTEM MODALS ==================== */
+        /* ==================== SYSTEM MODALS & TOAST ==================== */
         .glass-gate-screen {
             position: fixed;
             top: 0;
@@ -555,9 +598,32 @@
         }
         @keyframes luxRotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
+        /* Toast Popup Notification */
+        .lux-toast {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-100px);
+            background: var(--cyber-blue);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            box-shadow: 0 0 20px var(--neon-glow);
+            z-index: 10000;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .lux-toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
     </style>
 </head>
 <body> 
+
+<!-- Toast Alert Popup -->
+<div class="lux-toast" id="toastBox">Link copied to clipboard!</div>
 
 <!-- 18+ Elegance Gate -->
 <div class="glass-gate-screen" id="gateModal">
@@ -621,7 +687,10 @@
             <div id="videoEmbedContainer"></div>
         </div>
 
-        <div class="title-lux-viewport" id="videoActiveTitle">Loading presentation details...</div>
+        <div class="title-lux-viewport">
+            <div id="videoActiveTitle">Loading presentation details...</div>
+            <button class="btn-share-player" id="playerShareBtn">🔗 Copy Direct Link</button>
+        </div>
 
         <!-- Luxury Promo Module -->
         <div class="monetize-lux-card">
@@ -668,13 +737,19 @@
     let idxRelated = Math.floor(Math.random() * 5) + 6;
     let lockScrollFetch = false;
     let currentPanel = "home"; 
+    let activeVideoId = null;
 
     // System Cache Integrations
     if (!sessionStorage.getItem('processedKeys')) sessionStorage.setItem('processedKeys', JSON.stringify([]));
     if (!localStorage.getItem('savedCollection')) localStorage.setItem('savedCollection', JSON.stringify([]));
 
     document.addEventListener("DOMContentLoaded", () => {
-        executeFetchOperation(activeQuery, idxHome, 'homeStream', false);
+        // Direct Link Auto-Routing Check
+        checkUrlHashForVideo();
+
+        if (!activeVideoId) {
+            executeFetchOperation(activeQuery, idxHome, 'homeStream', false);
+        }
 
         document.getElementById('queryInput').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
@@ -702,6 +777,51 @@
         });
     }); 
 
+    function showToast(text) {
+        const toast = document.getElementById('toastBox');
+        toast.innerText = text;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    function copyVideoLink(e, videoId) {
+        if(e) e.stopPropagation();
+        const baseDomain = window.location.origin + window.location.pathname;
+        const shareableUrl = `${baseDomain}#video/${videoId}`;
+        
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(shareableUrl).then(() => {
+                showToast("🔗 Link Copied! Ready to share.");
+            });
+        } else {
+            const input = document.createElement('input');
+            input.value = shareableUrl;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            showToast("🔗 Link Copied! Ready to share.");
+        }
+    }
+
+    async function checkUrlHashForVideo() {
+        const hash = window.location.hash;
+        if (hash.startsWith('#video/')) {
+            const vId = hash.replace('#video/', '');
+            if (vId) {
+                try {
+                    const response = await fetch(`https://www.eporner.com/api/v2/video/id/?id=${vId}`);
+                    const data = await response.json();
+                    if (data && data.embed) {
+                        activateBroadcastStream(data.embed, data.title, data.id);
+                    }
+                } catch(err) {
+                    console.error("Direct link load error:", err);
+                }
+            }
+        }
+    }
+
     function navigateView(panelId) {
         currentPanel = panelId;
         document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
@@ -711,11 +831,13 @@
             document.getElementById('panelHome').classList.add('active');
             document.getElementById('dockHome').classList.add('active');
             document.getElementById('videoEmbedContainer').innerHTML = ""; 
+            history.pushState("", document.title, window.location.pathname + window.location.search);
         } else if (panelId === 'favorites') {
             document.getElementById('panelFavs').classList.add('active');
             document.getElementById('dockFav').classList.add('active');
             document.getElementById('videoEmbedContainer').innerHTML = ""; 
             parseSavedData();
+            history.pushState("", document.title, window.location.pathname + window.location.search);
         } else if (panelId === 'player') {
             document.getElementById('panelPlayer').classList.add('active');
         }
@@ -861,11 +983,14 @@
     function scaffoldCardNode(dataset, activeMarker) {
         const elementWrapper = document.createElement('div');
         elementWrapper.className = 'lux-card';
-        elementWrapper.onclick = () => activateBroadcastStream(dataset.embed, dataset.title); 
+        elementWrapper.onclick = () => activateBroadcastStream(dataset.embed, dataset.title, dataset.id); 
 
         elementWrapper.innerHTML = `
             <div class="lux-media">
                 <img src="${dataset.thumb}" alt="Cover Graphic">
+                <div class="share-lux-trigger" onclick="copyVideoLink(event, '${dataset.id}')">
+                    <span>🔗</span> <span>Share</span>
+                </div>
                 <div class="duration-lux-badge">${dataset.duration}</div>
                 <div class="fav-lux-trigger ${activeMarker ? 'active' : ''}" onclick="toggleCollectionState(event, ${JSON.stringify(dataset).replace(/"/g, '&quot;')})">
                     ${activeMarker ? '❤️' : '♡'}
@@ -882,12 +1007,16 @@
         return elementWrapper;
     }
 
-    function activateBroadcastStream(streamLink, metaLabel) {
+    function activateBroadcastStream(streamLink, metaLabel, videoId) {
+        activeVideoId = videoId;
+        window.location.hash = `video/${videoId}`;
+
         navigateView('player');
         document.getElementById('videoEmbedContainer').innerHTML = `
             <iframe src="${streamLink}" allowfullscreen scrolling="no"></iframe>
         `;
         document.getElementById('videoActiveTitle').innerText = metaLabel; 
+        document.getElementById('playerShareBtn').onclick = (e) => copyVideoLink(e, videoId);
 
         idxRelated = Math.floor(Math.random() * 5) + 6;
         executeFetchOperation(activeQuery, idxRelated, 'recommendStream', false);
